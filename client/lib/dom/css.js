@@ -5,17 +5,26 @@
 function addClass(node, ...className) {
   if (typeof node === 'string') node = document.querySelector(node);
 
-  if (isArray(className)) {
-    className.forEach((c) => node.classList.add(c));
-    return;
-  }
+  className.forEach((c) => {
+    if (isObject(c)) c = Object.values(c);
+    if (c.includes(',')) c = c.replace(/\s*/g, '').split(',');
 
-  if (typeof className !== 'string') {
-    throw new TypeError(
-      'addClass 함수의 두 번째 인수는 문자 타입 이어야 합니다.'
-    );
-  }
-  node.classList.add(className);
+    if (isArray(c)) c.forEach((cls) => node.classList.add(cls));
+    else if (isString(c)) node.classList.add(c);
+    else throw new TypeError('addClass 함수의 인수는 문자 타입이어야 합니다.');
+  });
+
+  // if (isArray(className)) {
+  //   className.forEach((c) => node.classList.add(c));
+  //   return;
+  // }
+
+  // if (typeof className !== 'string') {
+  //   throw new TypeError(
+  //     'addClass 함수의 두 번째 인수는 문자 타입 이어야 합니다.'
+  //   );
+  // }
+  // node.classList.add(className);
 }
 
 function removeClass(node, className) {

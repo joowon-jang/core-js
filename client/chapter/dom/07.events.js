@@ -137,3 +137,5 @@ ground.addEventListener('mousemove', throttle(handleMove));
 // throttle(() => {
 //   console.log('a');
 // });
+
+addClass('.first', 'a,b');
