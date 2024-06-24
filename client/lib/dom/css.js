@@ -2,6 +2,12 @@
 /*                     class                    */
 /* -------------------------------------------- */
 
+/**
+ *
+ * @param {HTMLElement | string} node
+ * @param  {string | array | object} className
+ */
+
 function addClass(node, ...className) {
   if (typeof node === 'string') node = document.querySelector(node);
 
