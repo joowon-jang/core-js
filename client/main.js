@@ -1,56 +1,21 @@
-import { 
-  attr, 
-  getNode, 
-  clearContents, 
-  insertLast 
-} from "./lib/index.js";
+import data from './data/data.js';
 
-function phase2() {
-  const calculator = getNode('.calculator');
-  const result = getNode('.result');
-  const clear = getNode('#clear');
-  const numberInputs = [...document.querySelectorAll('input:not(#clear)')];
+import { getNode, getRandom } from './lib/index.js';
 
-  function handleInput() {
-    const total = numberInputs.reduce((acc, cur) => acc + Number(cur.value), 0);
+const submit = getNode('#submit');
+const nameField = document.querySelector('#nameField');
+const result = document.querySelector('.result');
 
-    clearContents(result);
-    insertLast(result, total);
-  }
 
-  function handleClear(e) {
-    e.preventDefault();
-    numberInputs.forEach(clearContents);
-    result.textContent = '-';
-  }
-
-  calculator.addEventListener('input', handleInput);
-  clear.addEventListener('click', handleClear);
-}
-
-const first = getNode('#firstNumber');
-const second = getNode('#secondNumber');
-const result = getNode('.result');
-const clear = getNode('#clear');
-
-function handleInput() {
-  const firstValue = Number(first.value);
-  const secondValue = +second.value;
-  const total = firstValue + secondValue;
-
-  clearContents(result);
-
-  insertLast(result, total);
-}
-
-function handleClear(e) {
+function handleSubmit(e) {
   e.preventDefault();
 
-  clearContents(first);
-  clearContents(second);
-  result.textContent = '-';
+  const name = nameField.value;
+  const list = data(name);
+  const pick = list[getRandom(list.length)];
+
+  result.textContent = pick;
 }
 
-first.addEventListener('input', handleInput);
-second.addEventListener('input', handleInput);
-clear.addEventListener('click', handleClear);
+
+submit.addEventListener('click', handleSubmit);
