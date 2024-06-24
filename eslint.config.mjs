@@ -1,21 +1,6 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 
-const ignore = {
-  isString: true,
-  isObject: true,
-  isArray: true,
-  isNull: true,
-  getNode: true,
-  getNodes: true,
-  insertLast: true,
-  attr: true,
-  css: true,
-  bindEvent: true,
-  addClass: true,
-  removeClass: true,
-};
-
 export default [
   pluginJs.configs.recommended,
   {
@@ -23,7 +8,6 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...ignore,
       },
     },
 

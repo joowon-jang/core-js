@@ -1,7 +1,17 @@
-function bindEvent(node, type, handler) {
-  if (isString(node)) node = getNode(node);
+import { getNode } from "./getNode.js";
+import { isString } from "../utils/type.js";
 
-  node.addEventListener(type, handler);
 
-  return () => node.removeEventListener(type, handler);
+
+export function bindEvent(node,type,handler){
+  
+  if(isString(node)) node = getNode(node);
+
+  node.addEventListener(type,handler);
+
+  return () => node.removeEventListener(type,handler);
+
 }
+
+
+
