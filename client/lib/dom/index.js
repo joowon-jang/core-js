@@ -11,7 +11,7 @@ export * from './getNode.js';
 export * from './bindEvent.js';
 // export * from './clearContents.js';
 export { default as clearContents } from './clearContents.js';
-
+export * from './showAlert.js';
 
 
 
